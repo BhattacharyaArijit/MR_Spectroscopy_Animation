@@ -1,0 +1,98 @@
+# PRESS voxel selection animation
+# Change TE and TR below as per the requirement
+
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
+
+
+# USER SETTINGS
+
+TE = 30      # echo time in ms  (try 30, 68, 90, 120)
+TR = 2000    # repetition time in ms (try 1500, 2000, 3000, 4000)
+
+animation_seconds = 10
+fps = 20
+total_frames = animation_seconds * fps
+
+# convert ms = frames
+ms_per_frame = TR / total_frames
+
+# PRESS timing
+t_90 = 0
+t_180_1 = TE/2
+t_180_2 = TE
+t_echo = TE
+
+phase1 = int(t_90/ms_per_frame) + 5
+phase2 = int(t_180_1/ms_per_frame) + 20
+phase3 = int(t_180_2/ms_per_frame) + 40
+phase_echo = int(t_echo/ms_per_frame) + 60
+
+
+# FIGURE
+fig = plt.figure(figsize=(7,7))
+ax = fig.add_subplot(111, projection='3d')
+
+def setup_axes():
+    ax.set_xlim(0,10)
+    ax.set_ylim(0,10)
+    ax.set_zlim(0,10)
+    ax.set_box_aspect([1,1,1])
+    ax.set_title(f"PRESS voxel selection (TR={TR} ms, TE={TE} ms)")
+
+# DRAW CUBE
+def draw_cube(x1,x2,y1,y2,z1,z2,color,alpha):
+    verts = [
+        [(x1,y1,z1),(x2,y1,z1),(x2,y2,z1),(x1,y2,z1)],
+        [(x1,y1,z2),(x2,y1,z2),(x2,y2,z2),(x1,y2,z2)],
+        [(x1,y1,z1),(x2,y1,z1),(x2,y1,z2),(x1,y1,z2)],
+        [(x1,y2,z1),(x2,y2,z1),(x2,y2,z2),(x1,y2,z2)],
+        [(x1,y1,z1),(x1,y2,z1),(x1,y2,z2),(x1,y1,z2)],
+        [(x2,y1,z1),(x2,y2,z1),(x2,y2,z2),(x2,y1,z2)]
+    ]
+    ax.add_collection3d(
+        Poly3DCollection(verts, facecolors=color, alpha=alpha, edgecolor="k")
+    )
+
+# UPDATE FRAME
+def update(frame):
+    ax.cla()
+    setup_axes()
+
+    # big volume
+    draw_cube(1,9,1,9,1,9,"lightgray",0.08)
+
+    # 90° slice
+    if frame > phase1:
+        draw_cube(3,7,1,9,1,9,"red",0.25)
+
+    # first 180°
+    if frame > phase2:
+        draw_cube(1,9,3,7,1,9,"blue",0.25)
+
+    # second 180°
+    if frame > phase3:
+        draw_cube(1,9,1,9,3,7,"green",0.25)
+
+    # voxel intersection
+    if frame > phase3:
+        draw_cube(3,7,3,7,3,7,"black",0.7)
+
+    # TE evolution text
+    if frame > phase3:
+        progress = (frame-phase3)/(total_frames-phase3)
+        current_te = int(progress*TE)
+        ax.text2D(0.02,0.95,f"TE evolving → {current_te} ms", transform=ax.transAxes)
+
+    # TR label
+    ax.text2D(0.72,0.95,f"TR = {TR} ms", transform=ax.transAxes)
+
+# ANIMATION
+ani = FuncAnimation(fig, update, frames=total_frames, interval=50)
+
+# Save GIF
+ani.save("PRESS_voxel_animation_Updated.gif", writer="pillow", fps=fps)
+
+plt.show()
