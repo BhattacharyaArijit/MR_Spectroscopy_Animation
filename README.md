@@ -44,3 +44,6 @@ python press_animation.py
 
 
 The GIF will be saved in the working directory.
+
+**Citation**
+BhattacharyaArijit. “GitHub - BhattacharyaArijit/MRS_SVS_PRESS_Animation: MRS_SVS_PRESS_Animation.” GitHub, 2025, github.com/BhattacharyaArijit/MRS_SVS_PRESS_Animation.
