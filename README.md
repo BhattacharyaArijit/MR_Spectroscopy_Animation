@@ -72,4 +72,9 @@ Designed for:
 - conceptual understanding
 **Not intended for quantitative simulation.**
 
-  
+**Citation**
+Please cite the git hub reposatory if using the code and animation
+Arijit Bhattacharya. “GitHub - BhattacharyaArijit/MR_Spectroscopy_Animation: MR_Spectroscopy_Animation.” GitHub, 2025, github.com/BhattacharyaArijit/MR_Spectroscopy_Animation.
+
+**Collaboration**
+Feel free to suggest modification, and updates. I will be happy to collaborate for more creative annimations for MRS conceptual understanding, learning and presentation purposes!
