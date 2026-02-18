@@ -1,49 +1,75 @@
-**PRESS Voxel Selection Animation (Python)**
+**MRS Visual Animations (Python)**
 
-This repository contains a Python script that generates an animated visualization of a PRESS (Point-Resolved Spectroscopy) sequence used in MR Spectroscopy (MRS). The animation demonstrates how three slice-selective RF pulses intersect to form a single spectroscopy voxel and how timing parameters like TE and TR influence the sequence.
+This repository contains simple Python animations for understanding teaching core MR Spectroscopy (MRS) signal generation and PRESS voxel selection concepts.
+The scripts generate presentation-ready GIFs that visually explain how spectroscopy signals form in time and space.
+These are conceptual teaching tools, not full physics simulators.
 
-The output is a presentation-ready GIF that can be used for teaching MRI/MRS concepts.
+**Repository contents**
+*1. MRS_Animation_FID-to-Spectrum* (Visualizes how a time-domain FID becomes a frequency-domain spectrum.)
 
-**Overview**
+Shows:
+- Singlet, doublet, triplet, complex multiplets
+- FID building over time
+- FFT = spectrum formation
+- Linewidth & decay effects
 
-The animation illustrates:
+Output GIFs:
+- mrs_animation_1.gif
+- mrs_animation_2.gif
+- mrs_animation_3.gif
+
+*2. PRESS_Animation* (Visualizes PRESS voxel selection in 3D.)
+
+Shows:
 - 90° excitation slice
-- First 180° refocusing slice
-- Second 180° refocusing slice
-- Intersection = final PRESS voxel
-- Echo time (TE) evolution
-- Repetition time (TR) display
-The timing of events is scaled according to user-defined TE and TR but stretched to fit a short visualization (~10 seconds). This is a conceptual teaching tool, not a physics-accurate MRI simulator.
+- 180° refocusing slice #1
+- 180° refocusing slice #2
+- Slice intersection = final voxel
+- TE evolution
+- TR timing display
 
-**Adjustable parameters**
+Output GIF:
+- PRESS_voxel_animation.gif
 
-At the top of the script you can modify:
-TE = 30      # Echo time in ms
-TR = 2000    # Repetition time in ms
 
-The animation automatically rescales timing when these values change.
+**Timing is scaled to fit a short (~10 s) animation for quick visualization.**
+Adjustable parameters
+- BW = 2000
+- N = 2048
+- T2 = 0.3
+- animation_seconds = 12
+- fps = 25
 
-**Output**
-
-Running the script generates: PRESS_voxel_animation_Updated.gif
-
+Modify multiplets inside: def molecule_type(kind)
+- TE = 30    # ms
+- TR = 2000  # ms
+Timing automatically rescales in the animation.
 
 **Requirements**
-
 Python 3 with:
 - numpy
 - matplotlib
 - pillow
 
-**Install dependencies:**
-
+**Install:**
 pip install numpy matplotlib pillow
 
-**Run the script**
-python press_animation.py
+**Run**
+
+FID to Spectrum: python MRS_Animation_FID-to-Spectrum/mrs_animation.py
 
 
-The GIF will be saved in the working directory.
+PRESS voxel: python PRESS_Animation/press_animation.py
 
-**Citation**
-BhattacharyaArijit. “GitHub - BhattacharyaArijit/MRS_SVS_PRESS_Animation: MRS_SVS_PRESS_Animation.” GitHub, 2025, github.com/BhattacharyaArijit/MRS_SVS_PRESS_Animation.
+#GIFs will be saved in the working directory.
+
+**Purpose**
+
+Designed for:
+- MRI/MRS teaching
+- NMR physics lectures
+- presentations
+- conceptual understanding
+**Not intended for quantitative simulation.**
+
+  
