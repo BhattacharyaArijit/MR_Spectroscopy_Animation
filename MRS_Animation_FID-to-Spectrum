@@ -2,9 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-# ======================
 # GLOBAL PARAMETERS
-# ======================
 BW = 2000
 N = 2048
 t = np.arange(N)/BW
@@ -17,18 +15,14 @@ animation_seconds = 12     # <= change to 10–15
 fps = 25
 frames = animation_seconds * fps
 
-# ======================
 # MULTIPLET FUNCTION
-# ======================
 def multiplet(freqs, amps):
     signal = np.zeros_like(t, dtype=complex)
     for f,a in zip(freqs, amps):
         signal += a*np.exp(1j*2*np.pi*f*t)
     return signal
 
-# ======================
 # BUILD MOLECULE TYPES
-# ======================
 def molecule_type(kind):
 
     if kind == 1:
@@ -52,9 +46,7 @@ def molecule_type(kind):
         )
         return complex_peak*decay, "complex quartet"
 
-# ======================
 # ANIMATION FUNCTION
-# ======================
 def create_animation(kind):
 
     fid, title = molecule_type(kind)
@@ -97,9 +89,7 @@ def create_animation(kind):
     plt.close()
     print("Saved:", filename)
 
-# ======================
 # CREATE GIFS
-# ======================
 create_animation(1)
 create_animation(2)
 create_animation(3)
