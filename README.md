@@ -23,6 +23,8 @@ Designed for:
 - conceptual understanding
 **Not intended for quantitative simulation.**
 
+**#Created by:** Arijit Bhattacharya, PhD Scholar, Mind-Brain-Body-Society Lab, Department of Psychology and Cognitive Sciences, Ashoka University
+
 **Citation**
 Please cite the git hub reposatory if using the code and animation
 Arijit Bhattacharya. “GitHub - BhattacharyaArijit/MR_Spectroscopy_Animation: MR_Spectroscopy_Animation.” GitHub, 2025, github.com/BhattacharyaArijit/MR_Spectroscopy_Animation.
