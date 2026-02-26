@@ -13,8 +13,9 @@ These are conceptual teaching tools, not full physics simulators.
     MRS_Concentration_Time_Domian.py
     PRESS_Animation.py
     Proton_to_Concentration.py
-    README.md
     RF_Pulse_to_FID.py
+    README.md
+    LICENSE
 
 ## Purpose
 
