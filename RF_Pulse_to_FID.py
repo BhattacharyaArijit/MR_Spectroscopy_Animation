@@ -18,7 +18,7 @@
 # Ashoka University
 #
 # Licensed under the MIT License (see LICENSE file for details)
-# 
+
 
 import numpy as np
 import matplotlib.pyplot as plt
