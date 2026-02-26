@@ -1,6 +1,27 @@
-# PRESS voxel selection animation
-# Change TE and TR below as per the requirement
-#Created by Arijit Bhattacharya, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive sciences, Ashoka University
+# This script animates voxel selection in the PRESS
+# (Point RESolved Spectroscopy) sequence used in
+# Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Application of the initial 90° excitation pulse
+# - Two orthogonal 180° refocusing pulses
+# - Slice-selective excitation along three spatial axes
+# - Formation of the final localized voxel at the slice intersection
+# - Echo time (TE) evolution and repetition time (TR) labeling
+#
+# Adjustable parameters:
+#     TE – Echo Time (ms)
+#     TR – Repetition Time (ms)
+#
+# The visualization illustrates how three slice-selective RF pulses
+# define a spatially localized voxel in 3D space.
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
 
 import numpy as np
 import matplotlib.pyplot as plt
