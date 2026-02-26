@@ -1,4 +1,28 @@
-#Created by Arijit Bhattacharya, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive sciences, Ashoka University
+# This script animates how metabolite concentration can be estimated from
+# the initial amplitude of the Free Induction Decay (FID) signal in
+# Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Generation of singlet and multiplet FID components
+# - Linear superposition of metabolite signals
+# - Progressive signal buildup in the time domain
+# - Quantitative relationship between concentration and S(0)
+#
+# The visualization illustrates the principle:
+#     Concentration ∝ |S(0)|
+# where S(0) is the initial time-domain signal amplitude.
+#
+# Individual component contributions are displayed to show
+# proportional weighting of each metabolite signal.
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
