@@ -1,5 +1,14 @@
-#The Code animates how time domain fitting works in MRS
-#Created by Arijit Bhattacharya, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive Sceinces, Ashoka University
+# This script animates how time-domain basis expansion fitting works in
+# Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Construction of metabolite basis FIDs
+# - Linear combination using concentration weights
+# - Iterative fitting process
+# - Residual reduction over time
+#
+# Created by: Arijit Bhattacharya
+# Licensed under the MIT License (see LICENSE file for details)
 
 import numpy as np
 import matplotlib.pyplot as plt
