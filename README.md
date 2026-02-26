@@ -38,7 +38,7 @@ Ashoka University
 
 ## Citation
 Please cite the git hub reposatory if using the code and animation
-Bhattacharya, A. (2026). MRS Visual Animations (Python) (Version 1.0) [Computer software]. 
+Bhattacharya, A. (2026). MRS Visual Animations (Python) (Version 1.0) [Computer software]. https://doi.org/10.5281/zenodo.18786926; 
 Available at: https://github.com/BhattacharyaArijit/MR_Spectroscopy_Animation
 
 **Collaboration**
