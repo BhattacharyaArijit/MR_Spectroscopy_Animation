@@ -24,9 +24,14 @@ Designed for:
 **Not intended for quantitative simulation.**
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License – see the LICENSE file for details.
 
-**Created by:** Arijit Bhattacharya, PhD Scholar, Mind-Brain-Body-Society Lab, Department of Psychology and Cognitive Sciences, Ashoka University
+Created by: Arijit Bhattacharya  
+PhD Scholar  
+Mind-Brain-Body-Society Lab  
+Department of Psychology and Cognitive Sciences  
+Ashoka University
+
 
 ## Citation
 Please cite the git hub reposatory if using the code and animation
