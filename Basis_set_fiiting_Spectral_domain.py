@@ -1,5 +1,22 @@
-#The code animates how basis fitting works in frequency domain
-#Created by Arijit Bhattachary, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive Sciences, Ashoka University
+# This script animates basis set fitting in the frequency domain for
+# Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Generation of metabolite time-domain FIDs
+# - Fourier transformation to obtain frequency-domain spectra
+# - Construction of normalized basis spectra
+# - Linear scaling using concentration weights
+# - Progressive reconstruction of the composite spectrum
+#
+# The visualization illustrates how individual metabolite spectra
+# are scaled and combined to reproduce the observed summed spectrum.
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
 
 import numpy as np
 import matplotlib.pyplot as plt
