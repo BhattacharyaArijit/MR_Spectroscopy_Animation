@@ -1,4 +1,22 @@
-#Created by Arijit Bhattacharya, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive sciences, Ashoka University
+# This script animates the relationship between proton number,
+# FID amplitude, and spectral area in Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Scaling of the time-domain Free Induction Decay (FID) signal
+# - Corresponding changes in the frequency-domain spectrum
+# - Linear relationship between signal amplitude and proton number
+# - Proportional relationship between spectral area and concentration
+#
+# The visualization illustrates the fundamental principles:
+#     Signal amplitude ∝ number of contributing nuclei
+#     Spectral area ∝ metabolite concentration
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
 
 import numpy as np
 import matplotlib.pyplot as plt
