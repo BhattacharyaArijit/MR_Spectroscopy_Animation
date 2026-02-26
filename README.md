@@ -5,14 +5,16 @@ The scripts generate presentation-ready GIFs that visually explain how spectrosc
 These are conceptual teaching tools, not full physics simulators.
 
 ## Repository contents
-Basis_set_fiiting_Spectral_domain
-Basis_set_fiiting_Time_domain
-Basis_set_fitting_time_domain_1
-MRS_Animation_FID-to-Spectrum
-MRS_Concentration_Frequency_Domian
-MRS_Concentration_Time_Domian
-PRESS_Animation
-Proton_to_Concentration
+    Advanced_basis_set_fiiting_Time_domain.py
+    Basis_fitting_time_domain.py
+    Basis_set_fiiting_Spectral_domain.py
+    MRS_Animation_FID-to-Spectrum.py
+    MRS_Concentration_Frequency_Domian.py
+    MRS_Concentration_Time_Domian.py
+    PRESS_Animation.py
+    Proton_to_Concentration.py
+    README.md
+    RF_Pulse_to_FID.py
 
 ## Purpose
 
