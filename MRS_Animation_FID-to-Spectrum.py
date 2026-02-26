@@ -1,4 +1,22 @@
-#Created by Arijit Bhattacharya, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive sciences, Ashoka University
+# This script animates the formation of frequency-domain spectra
+# from time-domain Free Induction Decay (FID) signals in
+# Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Generation of singlet and multiplet FIDs
+# - Exponential T2 decay effects in the time domain
+# - Progressive truncation of the FID signal
+# - Real-time Fourier transformation into the frequency domain
+#
+# This visualization illustrates how spectral structure emerges
+# as more of the time-domain signal is acquired.
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
 
 import numpy as np
 import matplotlib.pyplot as plt
