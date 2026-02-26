@@ -23,6 +23,9 @@ Designed for:
 - conceptual understanding
 **Not intended for quantitative simulation.**
 
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
 **#Created by:** Arijit Bhattacharya, PhD Scholar, Mind-Brain-Body-Society Lab, Department of Psychology and Cognitive Sciences, Ashoka University
 
 **Citation**
