@@ -35,7 +35,8 @@ Ashoka University
 
 ## Citation
 Please cite the git hub reposatory if using the code and animation
-Arijit Bhattacharya. “GitHub - BhattacharyaArijit/MR_Spectroscopy_Animation: MR_Spectroscopy_Animation.” GitHub, 2025, github.com/BhattacharyaArijit/MR_Spectroscopy_Animation.
+Bhattacharya, A. (2026). MRS Visual Animations (Python) (Version 1.0) [Computer software]. 
+Available at: https://github.com/BhattacharyaArijit/MR_Spectroscopy_Animation
 
 **Collaboration**
 Feel free to suggest modification, and updates. I will be happy to collaborate for more creative annimations for MRS conceptual understanding, learning and presentation purposes!
