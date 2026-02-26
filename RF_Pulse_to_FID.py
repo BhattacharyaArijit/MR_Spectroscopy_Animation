@@ -1,5 +1,24 @@
-#The code shows how the net magnetization vector spins after the RF pulse and how it leads to the genration of Free Induction Decay
-#Created by Arijit Bhattacharya, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive Sciences, Ashoka University
+# This script animates the behavior of the net magnetization vector
+# following an RF excitation pulse and illustrates the origin of the
+# Free Induction Decay (FID) signal in Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Alignment of spins along the main magnetic field (B0)
+# - Application of a 90° RF excitation pulse
+# - Transverse precession and phase dispersion of individual spins
+# - T2* decay of transverse magnetization
+# - Emergence of the measurable FID from the net transverse component
+#
+# Individual spins are visualized in 3D (Bloch sphere view),
+# and the resulting time-domain FID is plotted simultaneously.
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
+# 
 
 import numpy as np
 import matplotlib.pyplot as plt
