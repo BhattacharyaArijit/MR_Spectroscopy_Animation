@@ -1,10 +1,10 @@
-**MRS Visual Animations (Python)**
+## MRS Visual Animations (Python)
 
 This repository contains simple Python animations for understanding teaching core MR Spectroscopy (MRS) signal generation, PRESS voxel selection, visualization of FID to frequency, estimation of concentration in both time and frequency domain, basis fitting of MRS concepts.
 The scripts generate presentation-ready GIFs that visually explain how spectroscopy signals form in time and space.
 These are conceptual teaching tools, not full physics simulators.
 
-**Repository contents**
+## Repository contents
 Basis_set_fiiting_Spectral_domain
 Basis_set_fiiting_Time_domain
 Basis_set_fitting_time_domain_1
@@ -14,7 +14,7 @@ MRS_Concentration_Time_Domian
 PRESS_Animation
 Proton_to_Concentration
 
-**Purpose**
+## Purpose
 
 Designed for:
 - MRI/MRS teaching
@@ -26,9 +26,9 @@ Designed for:
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-**#Created by:** Arijit Bhattacharya, PhD Scholar, Mind-Brain-Body-Society Lab, Department of Psychology and Cognitive Sciences, Ashoka University
+**Created by:** Arijit Bhattacharya, PhD Scholar, Mind-Brain-Body-Society Lab, Department of Psychology and Cognitive Sciences, Ashoka University
 
-**Citation**
+## Citation
 Please cite the git hub reposatory if using the code and animation
 Arijit Bhattacharya. “GitHub - BhattacharyaArijit/MR_Spectroscopy_Animation: MR_Spectroscopy_Animation.” GitHub, 2025, github.com/BhattacharyaArijit/MR_Spectroscopy_Animation.
 
