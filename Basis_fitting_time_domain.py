@@ -1,5 +1,21 @@
-#The code animates how MRS time domain fiting work with time domain basis set FIDs
-#Created by Arijit Bhattacharya, PhD Scholar, MBBS Lab, Department of Psychology and Cognitive Sciences, Ashoka University
+# This script animates basic time-domain basis set fitting in
+# Magnetic Resonance Spectroscopy (MRS).
+#
+# The animation demonstrates:
+# - Generation of metabolite free induction decay (FID) signals
+# - Normalization to construct a time-domain basis set
+# - Linear combination using concentration scaling
+# - Progressive reconstruction of the summed FID
+#
+# The visualization illustrates how individual metabolite basis functions
+# are scaled and combined to reproduce the observed composite signal.
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
 
 import numpy as np
 import matplotlib.pyplot as plt
