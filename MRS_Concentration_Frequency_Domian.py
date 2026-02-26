@@ -1,5 +1,22 @@
-#This code create annimation to show how concentration is calculated from a MRS Spectra
-#Created by Arijit Bhattacharya, PhD scholar, MBBS Lab, Department of Psychology and Cognitive Sciences, Ashoka University
+# This script animates how metabolite concentration is estimated from
+# Magnetic Resonance Spectroscopy (MRS) spectra.
+#
+# The animation demonstrates:
+# - Generation of time-domain Free Induction Decay (FID) signals
+# - Fourier transformation to obtain frequency-domain spectra
+# - Progressive signal acquisition over time
+# - Spectral peak area integration (numerical integration)
+# - Relationship between spectral area and metabolite concentration
+#
+# The visualization illustrates the principle:
+#     Concentration ∝ Area under the spectral peak
+#
+# Created by: Arijit Bhattacharya
+# PhD Scholar, Mind-Brain-Body-Society Lab
+# Department of Psychology and Cognitive Sciences
+# Ashoka University
+#
+# Licensed under the MIT License (see LICENSE file for details)
 
 import numpy as np
 import matplotlib.pyplot as plt
