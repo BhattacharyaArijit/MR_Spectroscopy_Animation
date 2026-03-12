@@ -1,0 +1,243 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+# SETTINGS
+
+fps = 30
+
+scene_lengths = [
+    4,   # injection
+    6,   # bloodstream transport
+    6,   # metabolic trapping
+    10,  # beta decay
+    12,  # positron travel
+    8,   # electron encounter
+    10,  # annihilation
+    10,  # gamma emission
+    12,  # coincidence detection
+    12,  # lines of response accumulation
+    16,  # backprojection reconstruction
+    10   # intensity mapping / special region detection
+]
+
+frames_per_scene = [int(s * fps) for s in scene_lengths]
+scene_edges = np.cumsum([0] + frames_per_scene)
+frames = sum(frames_per_scene)
+
+# FIGURE
+
+fig, ax = plt.subplots(figsize=(8,8))
+ax.set_xlim(-6,6)
+ax.set_ylim(-6,6)
+ax.set_aspect("equal")
+
+# BRAIN AND RECEPTOR LOCATION
+
+brain = plt.Circle((0,0),3,color="lightgray",alpha=0.3)
+# Active brain region for tracer uptake
+target = (-1.2,0.8)
+secondary_target = (1.5,-0.5)  # optional secondary region
+
+# DETECTOR RING
+
+theta = np.linspace(0,2*np.pi,40)
+det_x = 5*np.cos(theta)
+det_y = 5*np.sin(theta)
+
+# BACKPROJECTION GRID
+x = np.linspace(-3,3,100)
+y = np.linspace(-3,3,100)
+X,Y = np.meshgrid(x,y)
+backprojection = np.zeros_like(X)
+
+# UPDATE FUNCTION
+
+# Store LORs for reconstruction
+LORs = []
+
+def update(frame):
+    global LORs, backprojection
+    ax.clear()
+    ax.set_xlim(-6,6)
+    ax.set_ylim(-6,6)
+    ax.set_aspect("equal")
+
+    scene = np.searchsorted(scene_edges,frame,side="right")-1
+    local = frame-scene_edges[scene]
+    maxf = frames_per_scene[scene]
+    progress = local/maxf
+
+    # 1. Injection
+    if scene == 0:
+        ax.set_title("Injection of FDG radiotracer")
+        x_pos = -5 + progress*2
+        ax.plot([-5,-3],[0,0],'k',lw=5)
+        ax.scatter(x_pos,0,color="red",s=120)
+        ax.text(-5,-2,"Radiotracer enters bloodstream")
+
+    # 2. Blood transport
+    elif scene == 1:
+        ax.set_title("Tracer transported through blood")
+        ax.add_patch(brain)
+        x_pos = -3 + progress*3
+        ax.scatter(x_pos,0,color="red",s=120)
+        ax.text(-4,-4,"Blood circulation carries tracer")
+
+    # 3. Metabolic trapping
+    elif scene == 2:
+        ax.set_title("Tracer accumulates in active brain tissue")
+        ax.add_patch(brain)
+        ax.scatter(*target,color="blue",s=200)
+        x_pos = -2 + progress*(target[0]+2)
+        y_pos = progress*(target[1])
+        ax.scatter(x_pos,y_pos,color="red",s=120)
+        ax.annotate("Active neuron", xy=target, xytext=(-4,3),
+                    arrowprops=dict(arrowstyle="->"))
+
+    # 4. Beta decay
+    elif scene == 3:
+        ax.set_title("β⁺ decay of Fluorine-18 nucleus")
+        ax.add_patch(brain)
+        ax.scatter(*target,color="purple",s=200)
+        ax.text(target[0],target[1]+0.7,"¹⁸F nucleus",ha="center")
+        pos_x = target[0] + progress*2
+        ax.scatter(pos_x,target[1]+0.4,color="orange",s=120)
+        ax.text(-4,-4,"p → n + e⁺ + ν")
+
+    # 5. Positron travel
+    elif scene == 4:
+        ax.set_title("Positron travels through tissue")
+        ax.add_patch(brain)
+        steps = int(progress*40)
+        x,y = target
+        px=[x]; py=[y]
+        for i in range(steps):
+            x += np.random.normal(0,0.12)
+            y += np.random.normal(0,0.12)
+            px.append(x); py.append(y)
+        ax.plot(px,py,'orange')
+        ax.scatter(x,y,color="orange",s=120)
+        ax.text(-4,-4,"Positron loses energy")
+
+    # 6. Electron encounter
+    elif scene == 5:
+        ax.set_title("Positron meets electron")
+        ax.add_patch(brain)
+        ex = 0.5 - progress*0.5
+        px = -0.5 + progress*0.5
+        ax.scatter(px,0.5,color="orange",s=150)
+        ax.scatter(ex,0.5,color="blue",s=150)
+        ax.text(px,0.9,"e⁺")
+        ax.text(ex,0.9,"e⁻")
+        ax.text(-4,-4,"Opposite charges attract")
+
+    # 7. Annihilation
+    elif scene == 6:
+        ax.set_title("Electron–positron annihilation")
+        ax.add_patch(brain)
+        flash = plt.Circle((0,0.5),progress*0.7,color="yellow",alpha=0.6)
+        ax.add_patch(flash)
+        ax.text(-4,-4,"e⁺ + e⁻ → two 511 keV γ photons")
+
+    # 8. Gamma photon emission
+    elif scene == 7:
+        ax.set_title("Gamma photons emitted")
+        ax.add_patch(brain)
+        length = 5
+        # show photons flying outward
+        ax.arrow(0,0.5,length*progress,0,width=0.05,color="blue")
+        ax.arrow(0,0.5,-length*progress,0,width=0.05,color="blue")
+        ax.text(3,1,"511 keV γ")
+        ax.text(-3,1,"511 keV γ")
+        ax.scatter(*target,color="purple",s=150)
+
+    # 9. Coincidence detection
+    elif scene == 8:
+        ax.set_title("Coincidence detection by detectors")
+        ax.add_patch(brain)
+        ax.scatter(det_x,det_y,color="black")
+        n_events = int(progress*5)+1
+        for i in range(n_events):
+            # choose a random annihilation point near target
+            ax_center = target[0] + np.random.normal(0,0.5)
+            ay_center = target[1] + np.random.normal(0,0.5)
+            angle = np.random.uniform(0,2*np.pi)
+            x1 = ax_center + 5*np.cos(angle)*progress
+            y1 = ay_center + 5*np.sin(angle)*progress
+            x2 = ax_center - 5*np.cos(angle)*progress
+            y2 = ay_center - 5*np.sin(angle)*progress
+            # plot gamma paths
+            ax.plot([ax_center,x1],[ay_center,y1],'blue',alpha=0.7)
+            ax.plot([ax_center,x2],[ay_center,y2],'blue',alpha=0.7)
+            # mark detection at detectors
+            if progress>0.9:
+                ax.scatter([x1,x2],[y1,y2],color="green",s=100)
+                # store LOR
+                LORs.append([(x1,y1),(x2,y2)])
+
+        ax.text(-4,-4,"Detectors record simultaneous γ photons")
+
+    # 10. Lines of Response accumulation
+    elif scene == 9:
+        ax.set_title("Lines of Response accumulate")
+        ax.add_patch(brain)
+        ax.scatter(det_x,det_y,color="black")
+        n_draw = int(progress*len(LORs))
+        for i in range(n_draw):
+            (x1,y1),(x2,y2) = LORs[i]
+            ax.plot([x1,x2],[y1,y2],'red',alpha=0.3)
+        ax.text(-4,-4,"Each coincidence defines a line through annihilation point")
+
+    # 11. Backprojection reconstruction
+    elif scene == 10:
+        ax.set_title("Image reconstruction via backprojection")
+        ax.scatter(det_x,det_y,color="black",s=30)
+        ax.add_patch(brain)
+        # clear backprojection if starting
+        if progress==0:
+            backprojection[:,:]=0
+        # accumulate LOR contributions
+        n_use = int(progress*len(LORs))
+        for i in range(n_use):
+            (x1,y1),(x2,y2) = LORs[i]
+            # simple line equation
+            for ix in range(X.shape[0]):
+                for iy in range(X.shape[1]):
+                    px = X[ix,iy]
+                    py = Y[ix,iy]
+                    # distance from point to line
+                    dist = np.abs((y2-y1)*px-(x2-x1)*py + x2*y1 - y2*x1)/np.sqrt((y2-y1)**2 + (x2-x1)**2)
+                    if dist<0.1:
+                        backprojection[ix,iy] +=1
+        ax.imshow(backprojection.T,extent=[-3,3,-3,3],origin='lower',cmap="hot",alpha=0.7)
+        ax.text(-4,-4,"Backprojection integrates lines to reconstruct tracer distribution")
+
+    # 12. Detecting special region and intensity
+
+    elif scene == 11:
+        ax.set_title("Regional tracer binding and intensity")
+        ax.scatter(det_x,det_y,color="black",s=20)
+        ax.add_patch(brain)
+        ax.imshow(backprojection.T,extent=[-3,3,-3,3],origin='lower',cmap="hot",alpha=0.7)
+        # highlight target
+        ax.scatter(*target,color="cyan",s=250,marker='*')
+        # show intensity text
+        intensity = np.max(backprojection)
+        ax.text(target[0]+0.5,target[1]+0.5,f"High binding\nIntensity={intensity:.0f}",color='cyan')
+        ax.text(-4,-4,"PET identifies regions of high radiotracer uptake")
+
+# ANIMATION
+
+ani = FuncAnimation(fig,update,frames=frames,interval=1000/fps)
+
+# SAVE
+
+ani.save(
+    "pet_physics_teaching_animation_revised.mp4",
+    writer="ffmpeg",
+    fps=fps,
+    dpi=200
+)
+
+print("Saved: pet_physics_teaching_animation_revised.mp4")
