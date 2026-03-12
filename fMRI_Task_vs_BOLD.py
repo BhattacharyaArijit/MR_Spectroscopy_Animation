@@ -2,9 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
-# -------------------------------------------------
 # GLOBAL SETTINGS
-# -------------------------------------------------
 
 fps = 30
 duration = 120
@@ -19,9 +17,7 @@ T2star_task = 8
 
 omega = 2.5
 
-# -------------------------------------------------
 # SCENE TIMING
-# -------------------------------------------------
 
 scene_random = int(frames * 0.03)
 scene_align = int(frames * 0.08)
@@ -32,9 +28,7 @@ scene_dephase_rest = int(frames * 0.45)
 scene_rf_task = int(frames * 0.55)
 scene_dephase_task = int(frames * 0.90)
 
-# -------------------------------------------------
 # INITIAL SPINS
-# -------------------------------------------------
 
 theta = np.random.rand(n_spins)*np.pi
 phi = np.random.rand(n_spins)*2*np.pi
@@ -46,9 +40,7 @@ Mz = np.cos(theta)
 phases = np.random.rand(n_spins)*2*np.pi
 freq_offsets = np.linspace(-0.04,0.04,n_spins)
 
-# -------------------------------------------------
 # SIGNAL CONTAINERS
-# -------------------------------------------------
 
 fid_rest=[]
 fid_task=[]
@@ -59,9 +51,7 @@ trace_x=[]
 trace_y=[]
 trace_z=[]
 
-# -------------------------------------------------
 # FIGURE
-# -------------------------------------------------
 
 fig = plt.figure(figsize=(15,7))
 
@@ -69,9 +59,7 @@ ax3d = fig.add_subplot(121,projection='3d')
 ax_signal = fig.add_subplot(222)
 ax_relax = fig.add_subplot(224)
 
-# -------------------------------------------------
 # SIGNAL PLOT
-# -------------------------------------------------
 
 ax_signal.set_title("Measured MR Signal")
 ax_signal.set_xlim(0,20)
@@ -82,9 +70,7 @@ task_line, = ax_signal.plot([],[],lw=3,label="Task")
 
 ax_signal.legend()
 
-# -------------------------------------------------
 # RELAXATION CURVES
-# -------------------------------------------------
 
 t_relax = np.linspace(0,20,400)
 
@@ -100,9 +86,7 @@ cursor = ax_relax.axvline(0,linestyle="--")
 
 ax_relax.legend()
 
-# -------------------------------------------------
 # BLOCH SPHERE
-# -------------------------------------------------
 
 def draw_bloch():
 
@@ -115,9 +99,7 @@ def draw_bloch():
 
     ax3d.plot_wireframe(x,y,z,color="lightgray",alpha=0.25)
 
-# -------------------------------------------------
 # UPDATE FUNCTION
-# -------------------------------------------------
 
 def update(frame):
 
@@ -137,9 +119,7 @@ def update(frame):
     ax3d.quiver(0,0,-1,0,0,2,color="green",linewidth=3)
     ax3d.text(0,0,1.2,"B0",color="green")
 
-    # -------------------------------------------------
     # RANDOM SPINS
-    # -------------------------------------------------
 
     if frame < scene_random:
 
@@ -154,9 +134,7 @@ def update(frame):
             My[i]=np.sin(th)*np.sin(ph)
             Mz[i]=np.cos(th)
 
-    # -------------------------------------------------
     # ALIGNMENT
-    # -------------------------------------------------
 
     elif frame < scene_align:
 
@@ -166,9 +144,7 @@ def update(frame):
         My *= 0.9
         Mz += (1-Mz)*0.08
 
-    # -------------------------------------------------
     # RF REST
-    # -------------------------------------------------
 
     elif frame < scene_rf_rest:
 
@@ -178,9 +154,7 @@ def update(frame):
         My[:] = 0
         Mz[:] = 0
 
-    # -------------------------------------------------
     # REST DEPHASING
-    # -------------------------------------------------
 
     elif frame < scene_dephase_rest:
 
@@ -205,9 +179,7 @@ def update(frame):
 
         rest_line.set_data(time_rest,fid_rest)
 
-    # -------------------------------------------------
     # RF TASK
-    # -------------------------------------------------
 
     elif frame < scene_rf_task:
 
@@ -217,10 +189,8 @@ def update(frame):
         My[:] = 0
         Mz[:] = 0
 
-    # -------------------------------------------------
     # TASK DEPHASING
-    # -------------------------------------------------
-
+    
     elif frame < scene_dephase_task:
 
         label="Task: longer T2*"
@@ -248,9 +218,7 @@ def update(frame):
 
         label="Task produces stronger BOLD signal"
 
-    # -------------------------------------------------
     # DRAW SPINS
-    # -------------------------------------------------
 
     for i in range(n_spins):
 
@@ -270,9 +238,7 @@ def update(frame):
 
     ax3d.text2D(0.05,0.92,label,transform=ax3d.transAxes)
 
-    # -------------------------------------------------
     # RELAXATION CURVES SYNCHRONIZED WITH RF
-    # -------------------------------------------------
 
     if frame >= scene_rf_rest and frame < scene_rf_task:
 
@@ -303,9 +269,7 @@ def update(frame):
 
     return []
 
-# -------------------------------------------------
 # CREATE ANIMATION
-# -------------------------------------------------
 
 ani = FuncAnimation(
     fig,
@@ -314,9 +278,7 @@ ani = FuncAnimation(
     interval=1000/fps
 )
 
-# -------------------------------------------------
 # SAVE
-# -------------------------------------------------
 
 ani.save(
     "fmri_bold_physics_final.mp4",
